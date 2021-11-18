@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 
 import com.polariumx.infociclos.databinding.ActivityMainBinding;
@@ -29,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupUI(){
-        binding.activityMainSignInButton.setOnClickListener(toNavigate(SignInActivity.class));
+        binding.activityMainSignUpButton.setOnClickListener(toNavigate(SignUpActivity.class));
         binding.activityMainLogInButton.setOnClickListener(toNavigate(LogInActivity.class));
     }
 

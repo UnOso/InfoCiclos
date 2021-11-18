@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">InfoCiclos</string>
     <string name="activity_main_log_in">Log in</string>
-    <string name="activity_main_sign_in">Sign in</string>
+    <string name="activity_main_sign_up">Sign up</string>
+    <string name="generic_form_username">Username</string>
+    <string name="generic_form_password">Password</string>
 </resources>
