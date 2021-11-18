@@ -6,15 +6,75 @@
     android:layout_height="match_parent"
     tools:context=".SignUpActivity">
 
-    <TextView
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <LinearLayout
+        android:id="@+id/sign_up_form_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="Hello Sign in Fragment"
-        android:textSize="24sp"
-        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="40dp">
+
+        <EditText
+            android:id="@+id/activity_sign_up_email_edit_text"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="emailAddress"
+            android:hint="@string/generic_form_email"
+            android:inputType="textPersonName"
+            android:textSize="20sp"
+            tools:ignore="TextFields" />
+
+        <EditText
+            android:id="@+id/activity_sign_up_password_edit_text"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:autofillHints="password"
+            android:hint="@string/generic_form_password"
+            android:inputType="numberPassword"
+            android:textSize="20sp" />
+
+        <AutoCompleteTextView
+            android:id="@+id/activity_sign_up_grade_edit_text"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/generic_form_grade" />
+
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/activity_sign_up_radio_group"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_form_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/activity_sign_up_radio_group_morning_item"
+            android:text="@string/form_time_morning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"/>
+
+        <RadioButton
+            android:id="@+id/activity_sign_up_radio_group_afternoon_item"
+            android:text="@string/form_time_afternoon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RadioGroup>
+
+    <androidx.appcompat.widget.SwitchCompat
+        app:layout_constraintTop_toBottomOf="@id/activity_sign_up_radio_group"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
