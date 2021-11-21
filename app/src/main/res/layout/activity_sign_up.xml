@@ -10,11 +10,11 @@
         android:id="@+id/sign_up_form_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="40dp">
+        app:layout_constraintTop_toTopOf="parent">
 
         <EditText
             android:id="@+id/activity_sign_up_email_edit_text"
@@ -46,35 +46,56 @@
 
     <RadioGroup
         android:id="@+id/activity_sign_up_radio_group"
-        app:layout_constraintTop_toBottomOf="@id/sign_up_form_layout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_form_layout">
 
         <RadioButton
             android:id="@+id/activity_sign_up_radio_group_morning_item"
-            android:text="@string/form_time_morning"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"/>
+            android:layout_marginEnd="10dp"
+            android:text="@string/form_time_morning" />
 
         <RadioButton
             android:id="@+id/activity_sign_up_radio_group_afternoon_item"
-            android:text="@string/form_time_afternoon"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="@string/form_time_afternoon" />
 
     </RadioGroup>
 
     <androidx.appcompat.widget.SwitchCompat
-        app:layout_constraintTop_toBottomOf="@id/activity_sign_up_radio_group"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/activity_sign_up_time_switch"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="@string/generic_form_parcial_time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_sign_up_radio_group" />
+
+    <ProgressBar
+        android:id="@+id/activity_sign_up_progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/activity_sign_up_sign_up_button"
+        android:text="@string/activity_main_sign_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_sign_up_time_switch" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

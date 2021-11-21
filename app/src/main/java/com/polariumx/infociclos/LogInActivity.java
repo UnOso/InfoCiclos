@@ -40,6 +40,6 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     private boolean checkCredentials(){
-        return binding.activityLogInUsernameEditText.getText().toString().equalsIgnoreCase("luis") && binding.activityLogInPasswordEditText.getText().toString().equals("123456");
+        return binding.activityLogInEmailEditText.getText().toString().equalsIgnoreCase("luis") && binding.activityLogInPasswordEditText.getText().toString().equals("123456");
     }
 }
