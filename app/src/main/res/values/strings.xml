@@ -9,4 +9,7 @@
     <string name="form_time_afternoon">Tarde</string>
     <string name="generic_form_parcial_time">Tiempo Parcial</string>
     <string name="generic_form_full_time">Tiempo Completo</string>
+    <string name="main_menu_item_list">Lista</string>
+    <string name="main_menu_item_grid">Celdas</string>
+    <string name="main_menu_item_spinner">Spinner</string>
 </resources>

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.InfoCiclos">
         <activity
+            android:name=".MainActivity"
+            android:exported="true" />
+        <activity
             android:name=".CompleteSignUpActivity"
             android:exported="true" />
         <activity
@@ -19,7 +22,7 @@
             android:name=".LogInActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".MainMenuActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
