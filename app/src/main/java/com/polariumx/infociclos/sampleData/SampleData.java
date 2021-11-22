@@ -3,7 +3,7 @@ package com.polariumx.infociclos.sampleData;
 import com.polariumx.infociclos.models.GradoModel;
 import com.polariumx.infociclos.models.ModuloModel;
 
-public class sampleData {
+public class SampleData {
     public static GradoModel DAM1 = new GradoModel(
             "Desarrrollo de Aplicaciones Multiplataforma 1er año",
             new ModuloModel[]{

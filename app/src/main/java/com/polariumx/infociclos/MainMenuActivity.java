@@ -10,9 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.polariumx.infociclos.adapters.GradoListAdapter;
 import com.polariumx.infociclos.databinding.ActivityMainMenuBinding;
+import com.polariumx.infociclos.sampleData.SampleData;
 
-public class MainMenuActivity extends AppCompatActivity {
+public class MainMenuActivity extends AppCompatActivity implements GradoListAdapter.itemClickListener {
 
     private ActivityMainMenuBinding binding;
 
@@ -58,27 +60,11 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     private void setupUI() {
-        binding.activityMainMenuListMode.mainMenuContentListView.setAdapter(new BaseAdapter() {
-            @Override
-            public int getCount() {
-                return 0;
-            }
-
-            @Override
-            public Object getItem(int i) {
-                return null;
-            }
-
-            @Override
-            public long getItemId(int i) {
-                return 0;
-            }
-
-            @Override
-            public View getView(int i, View view, ViewGroup viewGroup) {
-                return null;
-            }
-        });
+        binding.activityMainMenuListMode.mainMenuContentListView.setAdapter(new GradoListAdapter(SampleData, this));
     }
 
+    @Override
+    public void radioButtonClicked() {
+
+    }
 }

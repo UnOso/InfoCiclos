@@ -12,4 +12,5 @@
     <string name="main_menu_item_list">Lista</string>
     <string name="main_menu_item_grid">Celdas</string>
     <string name="main_menu_item_spinner">Spinner</string>
+    <string name="activity_main_onboarding_text">Onboarding</string>
 </resources>

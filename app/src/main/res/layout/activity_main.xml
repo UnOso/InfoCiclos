@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:text="Onboarding"
+        android:text="@string/activity_main_onboarding_text"
         android:textSize="24sp"
         android:textColor="@color/black"
         android:textStyle="bold"
