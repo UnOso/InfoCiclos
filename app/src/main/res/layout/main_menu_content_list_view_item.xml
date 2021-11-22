@@ -7,10 +7,10 @@
 
     <TextView
         android:id="@+id/main_menu_content_list_view_item_title"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:autoSizeTextType="uniform"
         android:textStyle="bold"
         android:layout_marginStart="10dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,6 +32,7 @@
         tools:text="Esta es la descripcion del modulo" />
 
     <RadioButton
+        android:id="@+id/main_menu_content_list_view_item_radio_button"
         tools:text="Convalidada"
         app:layout_constraintStart_toStartOf="@id/main_menu_content_list_view_item_title"
         app:layout_constraintTop_toBottomOf="@id/main_menu_content_list_view_item_title"

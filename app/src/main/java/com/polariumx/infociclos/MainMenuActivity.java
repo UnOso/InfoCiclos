@@ -60,7 +60,7 @@ public class MainMenuActivity extends AppCompatActivity implements GradoListAdap
     }
 
     private void setupUI() {
-        binding.activityMainMenuListMode.mainMenuContentListView.setAdapter(new GradoListAdapter(SampleData, this));
+        binding.activityMainMenuListMode.mainMenuContentListView.setAdapter(new GradoListAdapter(SampleData.DAM1, this));
     }
 
     @Override

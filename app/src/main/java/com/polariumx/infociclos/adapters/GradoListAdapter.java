@@ -1,5 +1,6 @@
 package com.polariumx.infociclos.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,24 +8,27 @@ import android.widget.BaseAdapter;
 
 import com.polariumx.infociclos.databinding.MainMenuContentListViewItemBinding;
 import com.polariumx.infociclos.models.GradoModel;
+import com.polariumx.infociclos.models.ModuloModel;
 
 public class GradoListAdapter extends BaseAdapter {
     private MainMenuContentListViewItemBinding binding;
-    private GradoModel[] grados;
+    private GradoModel grado;
     private itemClickListener listener;
 
+    private LayoutInflater layoutInflater;
 
-    public GradoListAdapter(GradoModel[] grados, itemClickListener listener) {
-        this.grados = grados;
+
+    public GradoListAdapter(GradoModel grado, itemClickListener listener) {
+        this.grado = grado;
         this.listener = listener;
     }
 
-    public GradoModel[] getGrados() {
-        return grados;
+    public GradoModel getGrado() {
+        return grado;
     }
 
-    public void setGrados(GradoModel[] grados) {
-        this.grados = grados;
+    public void setGrado(GradoModel grado) {
+        this.grado = grado;
     }
 
     public itemClickListener getListener() {
@@ -37,12 +41,12 @@ public class GradoListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return grados.length;
+        return grado.getModules().length;
     }
 
     @Override
-    public Object getItem(int i) {
-        return grados[i];
+    public ModuloModel getItem(int i) {
+        return grado.getModules()[i];
     }
 
     @Override
@@ -52,11 +56,29 @@ public class GradoListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        //TODO:Show stuff
-        return null;
+        if (view == null) {
+            if (layoutInflater == null) {
+                layoutInflater = (LayoutInflater) viewGroup.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            }
+
+            binding = MainMenuContentListViewItemBinding.inflate(layoutInflater, viewGroup, false);
+            view = binding.getRoot();
+            view.setTag(binding);
+        } else {
+            binding = (MainMenuContentListViewItemBinding) view.getTag();
+        }
+
+        ModuloModel item = getItem(i);
+
+        binding.mainMenuContentListViewItemTitle.setText(item.getTitle());
+        binding.mainMenuContentListViewItemDescription.setText(item.getDescription());
+        binding.mainMenuContentListViewItemRadioButton.setChecked(item.getValidated());
+        binding.mainMenuContentListViewItemRadioButton.setEnabled(false);
+
+        return binding.getRoot();
     }
 
-    public interface itemClickListener{
+    public interface itemClickListener {
         void radioButtonClicked();
     }
 }
