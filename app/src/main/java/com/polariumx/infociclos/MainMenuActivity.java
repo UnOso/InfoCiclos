@@ -1,21 +1,23 @@
 package com.polariumx.infociclos;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.polariumx.infociclos.adapters.GradoListAdapter;
-import com.polariumx.infociclos.databinding.ActivityMainMenuBinding;
-import com.polariumx.infociclos.display.ListViewActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class MainMenuActivity extends AppCompatActivity implements GradoListAdapter.itemClickListener {
+import com.polariumx.infociclos.databinding.ActivityMainMenuBinding;
+import com.polariumx.infociclos.display.GridViewActivity;
+import com.polariumx.infociclos.display.ListViewActivity;
+import com.polariumx.infociclos.models.UserModel;
+
+public class MainMenuActivity extends AppCompatActivity {
 
     private ActivityMainMenuBinding binding;
+    private UserModel user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,8 @@ public class MainMenuActivity extends AppCompatActivity implements GradoListAdap
     @Override
     protected void onStart() {
         super.onStart();
+        Bundle bund = getIntent().getExtras();
+        user = bund.getParcelable("data");
         setupUI();
     }
 
@@ -46,10 +50,14 @@ public class MainMenuActivity extends AppCompatActivity implements GradoListAdap
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.main_menu_item_profile) {
-            //TODO: Show Profile
+            Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+            intent.putExtra("data", user);
+            startActivity(intent);
             return true;
         } else if (item.getItemId() == R.id.main_menu_item_log_out) {
-            //TODO: Go back to Main Screen
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
             return true;
         } else
             return super.onOptionsItemSelected(item);
@@ -57,12 +65,7 @@ public class MainMenuActivity extends AppCompatActivity implements GradoListAdap
 
     private void setupUI() {
          binding.activityMainMenuListButton.setOnClickListener(toNavigate(ListViewActivity.class));
-
-    }
-
-    @Override
-    public void radioButtonClicked() {
-
+         binding.activityMainMenuGridButton.setOnClickListener(toNavigate(GridViewActivity.class));
     }
 
     private View.OnClickListener toNavigate(Class c){
@@ -70,6 +73,7 @@ public class MainMenuActivity extends AppCompatActivity implements GradoListAdap
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), c);
+                intent.putExtra("data", user);
                 startActivity(intent);
             }
         };

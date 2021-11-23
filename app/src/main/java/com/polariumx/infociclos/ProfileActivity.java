@@ -1,25 +1,26 @@
-package com.polariumx.infociclos.display;
+package com.polariumx.infociclos;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 
 import com.polariumx.infociclos.adapters.GradoListAdapter;
 import com.polariumx.infociclos.databinding.ActivityListViewBinding;
-import com.polariumx.infociclos.databinding.ActivityLogInBinding;
+import com.polariumx.infociclos.databinding.ActivityProfileBinding;
 import com.polariumx.infociclos.models.UserModel;
 import com.polariumx.infociclos.sampleData.SampleData;
 
-public class ListViewActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
 
-    private ActivityListViewBinding binding;
+    private ActivityProfileBinding binding;
     private UserModel user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityListViewBinding.inflate(getLayoutInflater());
+        binding = ActivityProfileBinding.inflate(getLayoutInflater());
         View v = binding.getRoot();
         setContentView(v);
     }
@@ -32,9 +33,13 @@ public class ListViewActivity extends AppCompatActivity {
         setupUI();
     }
 
+    @SuppressLint("SetTextI18n")
     private void setupUI() {
-        binding.mainListViewList.setAdapter(new GradoListAdapter(SampleData.DAM2));
-        binding.mainListViewButtonReturn.setOnClickListener(new View.OnClickListener() {
+        binding.profileUsername.setText("Nombre: " + user.getUsername());
+        binding.profileGrado.setText("Grado: " + user.getGrado());
+        binding.profileJornada.setText("Jornada: " + user.getHora());
+        binding.profileTiempo.setText("Tiempo: " + user.getTiempo());
+        binding.profileButtonReturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();

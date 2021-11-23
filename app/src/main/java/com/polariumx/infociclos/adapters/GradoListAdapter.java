@@ -13,14 +13,12 @@ import com.polariumx.infociclos.models.ModuloModel;
 public class GradoListAdapter extends BaseAdapter {
     private MainMenuContentListViewItemBinding binding;
     private GradoModel grado;
-    private itemClickListener listener;
 
     private LayoutInflater layoutInflater;
 
 
-    public GradoListAdapter(GradoModel grado, itemClickListener listener) {
+    public GradoListAdapter(GradoModel grado) {
         this.grado = grado;
-        this.listener = listener;
     }
 
     public GradoModel getGrado() {
@@ -29,14 +27,6 @@ public class GradoListAdapter extends BaseAdapter {
 
     public void setGrado(GradoModel grado) {
         this.grado = grado;
-    }
-
-    public itemClickListener getListener() {
-        return listener;
-    }
-
-    public void setListener(itemClickListener listener) {
-        this.listener = listener;
     }
 
     @Override
@@ -76,9 +66,5 @@ public class GradoListAdapter extends BaseAdapter {
         binding.mainMenuContentListViewItemRadioButton.setEnabled(false);
 
         return binding.getRoot();
-    }
-
-    public interface itemClickListener {
-        void radioButtonClicked();
     }
 }

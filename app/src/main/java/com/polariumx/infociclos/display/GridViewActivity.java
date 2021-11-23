@@ -6,20 +6,20 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.polariumx.infociclos.adapters.GradoListAdapter;
+import com.polariumx.infociclos.databinding.ActivityGridViewBinding;
 import com.polariumx.infociclos.databinding.ActivityListViewBinding;
-import com.polariumx.infociclos.databinding.ActivityLogInBinding;
 import com.polariumx.infociclos.models.UserModel;
 import com.polariumx.infociclos.sampleData.SampleData;
 
-public class ListViewActivity extends AppCompatActivity {
+public class GridViewActivity extends AppCompatActivity {
 
-    private ActivityListViewBinding binding;
+    private ActivityGridViewBinding binding;
     private UserModel user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityListViewBinding.inflate(getLayoutInflater());
+        binding = ActivityGridViewBinding.inflate(getLayoutInflater());
         View v = binding.getRoot();
         setContentView(v);
     }
@@ -33,8 +33,8 @@ public class ListViewActivity extends AppCompatActivity {
     }
 
     private void setupUI() {
-        binding.mainListViewList.setAdapter(new GradoListAdapter(SampleData.DAM2));
-        binding.mainListViewButtonReturn.setOnClickListener(new View.OnClickListener() {
+        binding.mainGridViewGrid.setAdapter(new GradoListAdapter(SampleData.DAM2));
+        binding.mainGridViewButtonReturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();

@@ -1,13 +1,19 @@
 package com.polariumx.infociclos;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.RadioGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.polariumx.infociclos.databinding.ActivitySignUpBinding;
+import com.polariumx.infociclos.models.UserModel;
+import com.polariumx.infociclos.sampleData.SampleData;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -18,7 +24,7 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
-        View v = binding.getRoot();
+        View v = binding.getRoot() ;
         setContentView(v);
     }
 
@@ -32,8 +38,10 @@ public class SignUpActivity extends AppCompatActivity {
         binding.activitySignUpEmailEditText.addTextChangedListener(progressTextWatcher());
         binding.activitySignUpPasswordEditText.addTextChangedListener(progressTextWatcher());
         binding.activitySignUpGradeEditText.addTextChangedListener(progressAutoTextWatcher());
+        binding.activitySignUpGradeEditText.setAdapter(getDropdownAdapter());
+        binding.activitySignUpRadioGroup.setOnCheckedChangeListener(progressListener());
+        binding.activitySignUpSignUpButton.setOnClickListener(toNavigateConditions(MainMenuActivity.class));
     }
-
 
     private TextWatcher progressTextWatcher() {
         return new TextWatcher() {
@@ -91,5 +99,71 @@ public class SignUpActivity extends AppCompatActivity {
                     }
             }
         };
+    }
+
+    private RadioGroup.OnCheckedChangeListener progressListener(){
+        return new RadioGroup.OnCheckedChangeListener() {
+            boolean canChange = true;
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(canChange) {
+                    binding.activitySignUpProgressBar.setProgress(binding.activitySignUpProgressBar.getProgress() + progress);
+                    canChange = false;
+                }
+            }
+        };
+    }
+
+
+    private View.OnClickListener toNavigateConditions(Class c){
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (binding.activitySignUpProgressBar.getProgress() == 100) {
+                    binding.activitySignUpSpinner.setVisibility(View.VISIBLE);
+                    Intent intent = new Intent(getApplicationContext(), c);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.putExtra("data", getData());
+                    startActivity(intent);
+                    finish();
+                }else{
+                    Snackbar myS = Snackbar.make(binding.getRoot(), "Introduzca las Credenciales", 5000);
+                    myS.show();
+                }
+            }
+        };
+    }
+
+    private UserModel getData(){
+        UserModel userdata = new UserModel();
+        userdata.setUsername(binding.activitySignUpEmailEditText.getText().toString());
+        userdata.setPassword(binding.activitySignUpPasswordEditText.getText().toString());
+
+        switch (binding.activitySignUpGradeEditText.getText().toString().toUpperCase()){
+            case "DAM1":
+                userdata.setGrado(SampleData.DAM1);
+                break;
+            case "DAM2":
+                userdata.setGrado(SampleData.DAM2);
+                break;
+            case "DAW1":
+                userdata.setGrado(SampleData.DAW1);
+                break;
+            case "DAW2":
+                userdata.setGrado(SampleData.DAW2);
+                break;
+        }
+
+        String tiempo = binding.activitySignUpTimeSwitch.isChecked()? "Parcial":"Completo";
+        userdata.setTiempo(tiempo);
+
+        String jornada = binding.activitySignUpRadioGroup.getCheckedRadioButtonId()==0?"Mañana":"Tarde";
+        userdata.setHora(jornada);
+        return userdata;
+    }
+
+    private ArrayAdapter<String> getDropdownAdapter(){
+        String[] grados = {"DAM1", "DAM2", "DAW1", "DAW2"};
+        return new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,grados);
     }
 }

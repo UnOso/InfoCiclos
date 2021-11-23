@@ -33,12 +33,6 @@
             android:layout_marginHorizontal="10dp"
             android:text="@string/activity_main_menu_grid" />
 
-        <Button
-            android:id="@+id/activity_main_menu_spinner_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/activity_main_menu_spinner" />
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

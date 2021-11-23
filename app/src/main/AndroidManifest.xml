@@ -10,13 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.InfoCiclos">
         <activity
+            android:name=".ProfileActivity"
+            android:exported="true" />
+        <activity
+            android:name=".display.GridViewActivity"
+            android:exported="true" />
+        <activity
             android:name=".display.ListViewActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
-            android:exported="true" />
-        <activity
-            android:name=".CompleteSignUpActivity"
+            android:name=".SignUpActivity"
             android:exported="true" />
         <activity
             android:name=".MainMenuActivity"
@@ -25,7 +28,7 @@
             android:name=".LogInActivity"
             android:exported="true" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
