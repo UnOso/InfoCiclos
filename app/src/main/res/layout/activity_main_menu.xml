@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,10 +9,36 @@
 
     <include
         android:id="@+id/activity_main_menu_toolbar"
-        layout="@layout/main_menu_toolbar"/>
+        layout="@layout/main_menu_toolbar" />
 
-    <include
-        android:id="@+id/activity_main_menu_list_mode"
-        layout="@layout/main_menu_content_list_view"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_main_menu_toolbar">
 
-</LinearLayout>
+        <Button
+            android:id="@+id/activity_main_menu_list_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_main_menu_lista" />
+
+        <Button
+            android:id="@+id/activity_main_menu_grid_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:text="@string/activity_main_menu_grid" />
+
+        <Button
+            android:id="@+id/activity_main_menu_spinner_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_main_menu_spinner" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

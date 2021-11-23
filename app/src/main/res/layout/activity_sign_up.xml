@@ -40,7 +40,9 @@
             android:id="@+id/activity_sign_up_grade_edit_text"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:hint="@string/generic_form_grade" />
+            android:hint="@string/generic_form_grade"
+            android:inputType="textAutoComplete"
+            android:imeOptions="actionDone"/>
 
     </LinearLayout>
 
@@ -83,6 +85,8 @@
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

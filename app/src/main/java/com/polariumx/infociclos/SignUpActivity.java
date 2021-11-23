@@ -12,6 +12,7 @@ import com.polariumx.infociclos.databinding.ActivitySignUpBinding;
 public class SignUpActivity extends AppCompatActivity {
 
     private ActivitySignUpBinding binding;
+    private int progress = 25;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +29,15 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void setupUI() {
-        binding.activitySignUpEmailEditText.addTextChangedListener(progressWatcher());
+        binding.activitySignUpEmailEditText.addTextChangedListener(progressTextWatcher());
+        binding.activitySignUpPasswordEditText.addTextChangedListener(progressTextWatcher());
+        binding.activitySignUpGradeEditText.addTextChangedListener(progressAutoTextWatcher());
     }
 
 
-    private TextWatcher progressWatcher() {
+    private TextWatcher progressTextWatcher() {
         return new TextWatcher() {
+            private boolean shouldChange = true;
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -41,20 +45,51 @@ public class SignUpActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (charSequence.toString().isEmpty())
-                    changeProgress(0);
-                else
-                    changeProgress(10);
+
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                if (editable.toString().isEmpty()){
+                    binding.activitySignUpProgressBar.setProgress(binding.activitySignUpProgressBar.getProgress() - progress);
+                    shouldChange = true;
+                } else if(shouldChange){
+                    binding.activitySignUpProgressBar.setProgress(binding.activitySignUpProgressBar.getProgress() + progress);
+                    shouldChange = false;
+                }
             }
         };
     }
 
-    private void changeProgress(int progress) {
-        binding.activitySignUpProgressBar.setProgress(binding.activitySignUpProgressBar.getProgress() + progress);
+    private TextWatcher progressAutoTextWatcher() {
+        return new TextWatcher() {
+            private boolean shouldReduce = false;
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                switch(editable.toString()){
+                        case "DAM1":
+                        case "DAM2":
+                        case "DAW1":
+                        case "DAW2":
+                            shouldReduce = true;
+                            binding.activitySignUpProgressBar.setProgress(binding.activitySignUpProgressBar.getProgress() + progress);
+                            break;
+                        default:
+                            if(shouldReduce)
+                            binding.activitySignUpProgressBar.setProgress(binding.activitySignUpProgressBar.getProgress() - progress);
+                            shouldReduce = false;
+                    }
+            }
+        };
     }
 }

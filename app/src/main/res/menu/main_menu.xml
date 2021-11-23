@@ -2,20 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/main_menu_item_list"
-        android:icon="@drawable/ic_baseline_main_menu_item_list"
-        android:title="@string/main_menu_item_list"
+        android:id="@+id/main_menu_item_profile"
+        android:icon="@drawable/ic_baseline_main_menu_item_profile"
+        android:title="@string/main_menu_item_profile"
         app:showAsAction="always"/>
 
     <item
-        android:id="@+id/main_menu_item_grid"
-        android:icon="@drawable/ic_baseline_main_menu_item_grid"
-        android:title="@string/main_menu_item_grid"
-        app:showAsAction="ifRoom"/>
-
-    <item
-        android:id="@+id/main_menu_item_spinner"
-        android:icon="@drawable/ic_baseline_main_menu_item_spinner"
-        android:title="@string/main_menu_item_spinner"
+        android:id="@+id/main_menu_item_log_out"
+        android:icon="@drawable/ic_baseline_main_menu_item_log_out"
+        android:title="@string/main_menu_item_log_out"
         app:showAsAction="ifRoom"/>
 </menu>

@@ -9,8 +9,19 @@
     <string name="form_time_afternoon">Tarde</string>
     <string name="generic_form_parcial_time">Tiempo Parcial</string>
     <string name="generic_form_full_time">Tiempo Completo</string>
-    <string name="main_menu_item_list">Lista</string>
-    <string name="main_menu_item_grid">Celdas</string>
-    <string name="main_menu_item_spinner">Spinner</string>
+    <string name="main_menu_item_profile">Perfil</string>
+    <string name="main_menu_item_log_out">Cerrar Sesión</string>
     <string name="activity_main_onboarding_text">Onboarding</string>
+    <string name="activity_main_menu_lista">Lista</string>
+    <string name="activity_main_menu_grid">Celdas</string>
+    <string name="activity_main_menu_spinner">Spinner</string>
+    <string name="title_activity_list_view">ListViewActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

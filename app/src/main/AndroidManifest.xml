@@ -10,19 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.InfoCiclos">
         <activity
+            android:name=".display.ListViewActivity"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true" />
         <activity
             android:name=".CompleteSignUpActivity"
             android:exported="true" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".MainMenuActivity"
             android:exported="true" />
         <activity
             android:name=".LogInActivity"
             android:exported="true" />
         <activity
-            android:name=".MainMenuActivity"
+            android:name=".SignUpActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -33,6 +33,7 @@ public class LogInActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(checkCredentials()){
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+
                     startActivity(intent);
                 }
             }

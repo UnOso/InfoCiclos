@@ -3,16 +3,15 @@ package com.polariumx.infociclos;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 
 import com.polariumx.infociclos.adapters.GradoListAdapter;
 import com.polariumx.infociclos.databinding.ActivityMainMenuBinding;
-import com.polariumx.infociclos.sampleData.SampleData;
+import com.polariumx.infociclos.display.ListViewActivity;
 
 public class MainMenuActivity extends AppCompatActivity implements GradoListAdapter.itemClickListener {
 
@@ -46,25 +45,33 @@ public class MainMenuActivity extends AppCompatActivity implements GradoListAdap
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.main_menu_item_list) {
-            //TODO: Show in list mode
+        if (item.getItemId() == R.id.main_menu_item_profile) {
+            //TODO: Show Profile
             return true;
-        } else if (item.getItemId() == R.id.main_menu_item_grid) {
-            //TODO: Show in grid mode
-            return true;
-        } else if (item.getItemId() == R.id.main_menu_item_spinner) {
-            //TODO: Show in spinner mode
+        } else if (item.getItemId() == R.id.main_menu_item_log_out) {
+            //TODO: Go back to Main Screen
             return true;
         } else
             return super.onOptionsItemSelected(item);
     }
 
     private void setupUI() {
-        binding.activityMainMenuListMode.mainMenuContentListView.setAdapter(new GradoListAdapter(SampleData.DAM1, this));
+         binding.activityMainMenuListButton.setOnClickListener(toNavigate(ListViewActivity.class));
+
     }
 
     @Override
     public void radioButtonClicked() {
 
+    }
+
+    private View.OnClickListener toNavigate(Class c){
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), c);
+                startActivity(intent);
+            }
+        };
     }
 }
