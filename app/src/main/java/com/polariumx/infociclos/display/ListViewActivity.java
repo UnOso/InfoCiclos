@@ -28,12 +28,12 @@ public class ListViewActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         Bundle bund = getIntent().getExtras();
-        user = bund.getParcelable("data");
+        user = (UserModel) bund.getSerializable("data");
         setupUI();
     }
 
     private void setupUI() {
-        binding.mainListViewList.setAdapter(new GradoListAdapter(SampleData.DAM2));
+        binding.mainListViewList.setAdapter(new GradoListAdapter(user.getGrado()));
         binding.mainListViewButtonReturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

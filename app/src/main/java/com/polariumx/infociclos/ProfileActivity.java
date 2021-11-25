@@ -29,14 +29,14 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         Bundle bund = getIntent().getExtras();
-        user = bund.getParcelable("data");
+        user = (UserModel) bund.getSerializable("data");
         setupUI();
     }
 
     @SuppressLint("SetTextI18n")
     private void setupUI() {
         binding.profileUsername.setText("Nombre: " + user.getUsername());
-        binding.profileGrado.setText("Grado: " + user.getGrado());
+        binding.profileGrado.setText("Grado: " + user.getGrado().getName());
         binding.profileJornada.setText("Jornada: " + user.getHora());
         binding.profileTiempo.setText("Tiempo: " + user.getTiempo());
         binding.profileButtonReturn.setOnClickListener(new View.OnClickListener() {

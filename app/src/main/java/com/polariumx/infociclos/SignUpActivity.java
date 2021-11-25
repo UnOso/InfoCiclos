@@ -68,7 +68,7 @@ public class SignUpActivity extends AppCompatActivity {
             }
         };
     }
-
+    
     private TextWatcher progressAutoTextWatcher() {
         return new TextWatcher() {
             private boolean shouldReduce = false;

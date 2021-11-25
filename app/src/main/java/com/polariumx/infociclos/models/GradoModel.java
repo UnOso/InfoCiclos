@@ -1,9 +1,8 @@
 package com.polariumx.infociclos.models;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import java.io.Serializable;
 
-public class GradoModel implements Parcelable {
+public class GradoModel implements Serializable {
     private String name;
     private ModuloModel[] modules;
 
@@ -15,23 +14,6 @@ public class GradoModel implements Parcelable {
     public GradoModel() {
         modules = new ModuloModel[0];
     }
-
-    protected GradoModel(Parcel in) {
-        name = in.readString();
-        modules = in.createTypedArray(ModuloModel.CREATOR);
-    }
-
-    public static final Creator<GradoModel> CREATOR = new Creator<GradoModel>() {
-        @Override
-        public GradoModel createFromParcel(Parcel in) {
-            return new GradoModel(in);
-        }
-
-        @Override
-        public GradoModel[] newArray(int size) {
-            return new GradoModel[size];
-        }
-    };
 
     public String getName() {
         return name;
@@ -49,14 +31,4 @@ public class GradoModel implements Parcelable {
         this.modules = modules;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(name);
-        parcel.writeTypedArray(modules, i);
-    }
 }

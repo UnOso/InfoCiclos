@@ -36,7 +36,7 @@ public class MainMenuActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         Bundle bund = getIntent().getExtras();
-        user = bund.getParcelable("data");
+        user = (UserModel) bund.getSerializable("data");
         setupUI();
     }
 

@@ -33,6 +33,7 @@
             android:layout_height="wrap_content"
             android:autofillHints="password"
             android:hint="@string/generic_form_password"
+            android:imeOptions="actionDone"
             android:inputType="numberPassword"
             android:textSize="20sp" />
 

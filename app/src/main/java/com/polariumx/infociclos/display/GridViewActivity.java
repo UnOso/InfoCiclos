@@ -28,12 +28,12 @@ public class GridViewActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         Bundle bund = getIntent().getExtras();
-        user = bund.getParcelable("data");
+        user = (UserModel) bund.getSerializable("data");
         setupUI();
     }
 
     private void setupUI() {
-        binding.mainGridViewGrid.setAdapter(new GradoListAdapter(SampleData.DAM2));
+        binding.mainGridViewGrid.setAdapter(new GradoListAdapter(user.getGrado()));
         binding.mainGridViewButtonReturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
