@@ -6,12 +6,14 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.polariumx.infociclos.databinding.ActivitySignUpBinding;
+import com.polariumx.infociclos.misc.ProgressBarAnimation;
 import com.polariumx.infociclos.models.UserModel;
 import com.polariumx.infociclos.sampleData.SampleData;
 
@@ -19,12 +21,13 @@ public class SignUpActivity extends AppCompatActivity {
 
     private ActivitySignUpBinding binding;
     private int progress = 25;
+    private int animDurationMult = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
-        View v = binding.getRoot() ;
+        View v = binding.getRoot();
         setContentView(v);
     }
 
@@ -40,12 +43,14 @@ public class SignUpActivity extends AppCompatActivity {
         binding.activitySignUpGradeEditText.addTextChangedListener(progressAutoTextWatcher());
         binding.activitySignUpGradeEditText.setAdapter(getDropdownAdapter());
         binding.activitySignUpRadioGroup.setOnCheckedChangeListener(progressListener());
+        binding.activitySignUpProgressBar.setMax(binding.activitySignUpProgressBar.getMax() * animDurationMult);
         binding.activitySignUpSignUpButton.setOnClickListener(toNavigateConditions(MainMenuActivity.class));
     }
 
     private TextWatcher progressTextWatcher() {
         return new TextWatcher() {
             private boolean shouldChange = true;
+
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -58,20 +63,27 @@ public class SignUpActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (editable.toString().isEmpty()){
-                    binding.activitySignUpProgressBar.setProgress(binding.activitySignUpProgressBar.getProgress() - progress);
+                ProgressBarAnimation anim;
+                ProgressBar pB = binding.activitySignUpProgressBar;
+                if (editable.toString().isEmpty()) {
+                    anim = new ProgressBarAnimation(pB, pB.getProgress(), pB.getProgress() - progress * animDurationMult);
+                    anim.setDuration(1000);
+                    pB.startAnimation(anim);
                     shouldChange = true;
-                } else if(shouldChange){
-                    binding.activitySignUpProgressBar.setProgress(binding.activitySignUpProgressBar.getProgress() + progress);
+                } else if (shouldChange) {
+                    anim = new ProgressBarAnimation(pB, pB.getProgress(), pB.getProgress() + progress * animDurationMult);
+                    anim.setDuration(1000);
+                    pB.startAnimation(anim);
                     shouldChange = false;
                 }
             }
         };
     }
-    
+
     private TextWatcher progressAutoTextWatcher() {
         return new TextWatcher() {
             private boolean shouldReduce = false;
+
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -84,30 +96,42 @@ public class SignUpActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                switch(editable.toString()){
-                        case "DAM1":
-                        case "DAM2":
-                        case "DAW1":
-                        case "DAW2":
-                            shouldReduce = true;
-                            binding.activitySignUpProgressBar.setProgress(binding.activitySignUpProgressBar.getProgress() + progress);
-                            break;
-                        default:
-                            if(shouldReduce)
-                            binding.activitySignUpProgressBar.setProgress(binding.activitySignUpProgressBar.getProgress() - progress);
+                ProgressBarAnimation anim;
+                ProgressBar pB = binding.activitySignUpProgressBar;
+                switch (editable.toString()) {
+                    case "DAM1":
+                    case "DAM2":
+                    case "DAW1":
+                    case "DAW2":
+                        shouldReduce = true;
+                        anim = new ProgressBarAnimation(pB, pB.getProgress(), pB.getProgress() + progress * animDurationMult);
+                        anim.setDuration(1000);
+                        pB.startAnimation(anim);
+                        break;
+                    default:
+                        if (shouldReduce) {
+                            anim = new ProgressBarAnimation(pB, pB.getProgress(), pB.getProgress() - progress * animDurationMult);
+                            anim.setDuration(1000);
+                            pB.startAnimation(anim);
                             shouldReduce = false;
-                    }
+                        }
+                }
             }
         };
     }
 
-    private RadioGroup.OnCheckedChangeListener progressListener(){
+    private RadioGroup.OnCheckedChangeListener progressListener() {
         return new RadioGroup.OnCheckedChangeListener() {
             boolean canChange = true;
+
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(canChange) {
-                    binding.activitySignUpProgressBar.setProgress(binding.activitySignUpProgressBar.getProgress() + progress);
+                ProgressBarAnimation anim;
+                ProgressBar pB = binding.activitySignUpProgressBar;
+                if (canChange) {
+                    anim = new ProgressBarAnimation(pB, pB.getProgress(), pB.getProgress() + progress * animDurationMult);
+                    anim.setDuration(1000);
+                    pB.startAnimation(anim);
                     canChange = false;
                 }
             }
@@ -115,31 +139,31 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
-    private View.OnClickListener toNavigateConditions(Class c){
+    private View.OnClickListener toNavigateConditions(Class c) {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (binding.activitySignUpProgressBar.getProgress() == 100) {
+                if (binding.activitySignUpProgressBar.getProgress() == binding.activitySignUpProgressBar.getMax()) {
                     binding.activitySignUpSpinner.setVisibility(View.VISIBLE);
                     Intent intent = new Intent(getApplicationContext(), c);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.putExtra("data", getData());
                     startActivity(intent);
                     finish();
-                }else{
-                    Snackbar myS = Snackbar.make(binding.getRoot(), "Introduzca las Credenciales", 5000);
+                } else {
+                    Snackbar myS = Snackbar.make(binding.getRoot(), getString(R.string.fill_credentials_generic), 5000);
                     myS.show();
                 }
             }
         };
     }
 
-    private UserModel getData(){
+    private UserModel getData() {
         UserModel userdata = new UserModel();
         userdata.setUsername(binding.activitySignUpEmailEditText.getText().toString());
         userdata.setPassword(binding.activitySignUpPasswordEditText.getText().toString());
 
-        switch (binding.activitySignUpGradeEditText.getText().toString().toUpperCase()){
+        switch (binding.activitySignUpGradeEditText.getText().toString().toUpperCase()) {
             case "DAM1":
                 userdata.setGrado(SampleData.DAM1);
                 break;
@@ -154,16 +178,16 @@ public class SignUpActivity extends AppCompatActivity {
                 break;
         }
 
-        String tiempo = binding.activitySignUpTimeSwitch.isChecked()? "Parcial":"Completo";
-        userdata.setTiempo(tiempo);
+        String time = binding.activitySignUpTimeSwitch.isChecked() ? getString(R.string.generic_form_partial_time) : getString(R.string.generic_form_full_time);
+        userdata.setTiempo(time);
 
-        String jornada = binding.activitySignUpRadioGroup.getCheckedRadioButtonId()==0?"Mañana":"Tarde";
-        userdata.setHora(jornada);
+        String shift = binding.activitySignUpRadioGroup.getCheckedRadioButtonId() == 0 ? getString(R.string.form_time_morning) : getString(R.string.form_time_afternoon);
+        userdata.setHora(shift);
         return userdata;
     }
 
-    private ArrayAdapter<String> getDropdownAdapter(){
-        String[] grados = {"DAM1", "DAM2", "DAW1", "DAW2"};
-        return new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,grados);
+    private ArrayAdapter<String> getDropdownAdapter() {
+        String[] course = {"DAM1", "DAM2", "DAW1", "DAW2"};
+        return new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, course);
     }
 }

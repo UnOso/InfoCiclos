@@ -3,17 +3,17 @@
     <string name="activity_main_log_in">Log in</string>
     <string name="activity_main_sign_up">Sign up</string>
     <string name="generic_form_email">Email</string>
-    <string name="generic_form_password">Contraseña</string>
-    <string name="generic_form_grade">Curso</string>
-    <string name="form_time_morning">Mañana</string>
-    <string name="form_time_afternoon">Tarde</string>
-    <string name="generic_form_parcial_time">Tiempo Parcial</string>
-    <string name="generic_form_full_time">Tiempo Completo</string>
-    <string name="main_menu_item_profile">Perfil</string>
-    <string name="main_menu_item_log_out">Cerrar Sesión</string>
+    <string name="generic_form_password">Password</string>
+    <string name="generic_form_grade">Course</string>
+    <string name="form_time_morning">Morning</string>
+    <string name="form_time_afternoon">Afternoon</string>
+    <string name="generic_form_partial_time">Partial Time</string>
+    <string name="generic_form_full_time">Full Time</string>
+    <string name="main_menu_item_profile">Profile</string>
+    <string name="main_menu_item_log_out">Log Out</string>
     <string name="activity_main_onboarding_text">Welcome</string>
-    <string name="activity_main_menu_lista">Lista</string>
-    <string name="activity_main_menu_grid">Celdas</string>
+    <string name="activity_main_menu_lista">List</string>
+    <string name="activity_main_menu_grid">Grid</string>
     <string name="activity_main_menu_spinner">Spinner</string>
     <string name="title_activity_list_view">ListViewActivity</string>
     <!-- Strings used for fragments for navigation -->
@@ -25,4 +25,5 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="generic_return">Return</string>
+    <string name="fill_credentials_generic">Please fill all the Fields</string>
 </resources>
