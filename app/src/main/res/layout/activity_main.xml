@@ -4,45 +4,77 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_color"
     tools:context=".MainActivity">
 
     <TextView
-        android:text="@string/activity_main_onboarding_text"
-        android:textSize="24sp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/activity_main_buttons_layout"
+        android:id="@+id/activity_main_onboarding_text"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/autour_one"
+        android:shadowColor="@color/black"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:shadowRadius="10"
+        android:text="@string/activity_main_onboarding_text"
+        android:textColor="@color/complementary_color"
+        android:textSize="42sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/activity_main_image"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/generic_circle_shape"
+        android:backgroundTint="@color/complementary_color"
+        android:elevation="10dp"
+        android:padding="10dp"
+        android:src="@drawable/ic_activity_main_books"
+        app:layout_constraintBottom_toTopOf="@id/activity_main_buttons_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_main_onboarding_text" />
 
     <LinearLayout
         android:id="@+id/activity_main_buttons_layout"
-        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="40dp">
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/activity_main_log_in_button"
-            android:text="@string/activity_main_log_in"
+            style="?android:attr/buttonBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="25dp"/>
+            android:layout_marginEnd="25dp"
+            android:backgroundTint="@color/secondary_color"
+            android:fontFamily="@font/autour_one"
+            android:shadowColor="@color/white"
+            android:shadowRadius="20"
+            android:text="@string/activity_main_log_in"
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/activity_main_sign_up_button"
-            android:text="@string/activity_main_sign_up"
+            style="?android:attr/buttonBarStyle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/addor_color"
+            android:fontFamily="@font/autour_one"
+            android:shadowColor="@color/white"
+            android:shadowRadius="20"
+            android:text="@string/activity_main_sign_up"
+            android:textColor="@color/black" />
 
     </LinearLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,7 +11,7 @@
     <string name="generic_form_full_time">Tiempo Completo</string>
     <string name="main_menu_item_profile">Perfil</string>
     <string name="main_menu_item_log_out">Cerrar Sesión</string>
-    <string name="activity_main_onboarding_text">Onboarding</string>
+    <string name="activity_main_onboarding_text">Welcome</string>
     <string name="activity_main_menu_lista">Lista</string>
     <string name="activity_main_menu_grid">Celdas</string>
     <string name="activity_main_menu_spinner">Spinner</string>
