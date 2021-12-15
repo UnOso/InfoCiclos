@@ -42,7 +42,7 @@ public class LogInActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }else{
-                    Snackbar myS = Snackbar.make(binding.getRoot(), "Introduzca las Credenciales", 5000);
+                    Snackbar myS = Snackbar.make(binding.getRoot(), getString(R.string.fill_credentials_generic), 5000);
                     myS.show();
                 }
             }
@@ -50,7 +50,7 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     private boolean checkCredentials(){
-        return binding.activityLogInEmailEditText.getText().toString().equalsIgnoreCase("luis") && binding.activityLogInPasswordEditText.getText().toString().equals("123456");
+        return binding.activityLogInUsernameEditText.getText().toString().equalsIgnoreCase("luis") && binding.activityLogInPasswordEditText.getText().toString().equals("123456");
     }
 
     private UserModel getData(){

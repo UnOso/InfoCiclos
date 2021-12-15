@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 
@@ -38,13 +39,26 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void setupUI() {
-        binding.activitySignUpEmailEditText.addTextChangedListener(progressTextWatcher());
+        binding.activitySignUpUsernameEditText.addTextChangedListener(progressTextWatcher());
         binding.activitySignUpPasswordEditText.addTextChangedListener(progressTextWatcher());
         binding.activitySignUpGradeEditText.addTextChangedListener(progressAutoTextWatcher());
         binding.activitySignUpGradeEditText.setAdapter(getDropdownAdapter());
         binding.activitySignUpRadioGroup.setOnCheckedChangeListener(progressListener());
         binding.activitySignUpProgressBar.setMax(binding.activitySignUpProgressBar.getMax() * animDurationMult);
         binding.activitySignUpSignUpButton.setOnClickListener(toNavigateConditions(MainMenuActivity.class));
+        binding.activitySignUpTimeSwitch.setOnCheckedChangeListener(switchChangeListener());
+    }
+
+    private CompoundButton.OnCheckedChangeListener switchChangeListener() {
+        return new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b)
+                    compoundButton.setText(getText(R.string.generic_form_full_time));
+                else
+                    compoundButton.setText(getText(R.string.generic_form_partial_time));
+            }
+        };
     }
 
     private TextWatcher progressTextWatcher() {
@@ -160,7 +174,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private UserModel getData() {
         UserModel userdata = new UserModel();
-        userdata.setUsername(binding.activitySignUpEmailEditText.getText().toString());
+        userdata.setUsername(binding.activitySignUpUsernameEditText.getText().toString());
         userdata.setPassword(binding.activitySignUpPasswordEditText.getText().toString());
 
         switch (binding.activitySignUpGradeEditText.getText().toString().toUpperCase()) {
